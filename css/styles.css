@@ -1,0 +1,132 @@
+/**
+ *Login page *
+ **/
+
+.login {
+  margin: auto;
+  width: 20%;
+  text-align: center;
+  position: fixed;
+  top: 37.5%;
+  left: 37.5%;
+  font-family: 'Roboto';
+  background-color: white;
+  padding: 2.5%;
+  border-radius: 3%;
+  box-shadow: 1px 1px 1px 1px grey;
+}
+
+.row {
+  display: block;
+  margin: 1% auto;
+  height: 20%;
+  font-size: 12pt;
+}
+
+input {
+  background-color: #e6e9ef;
+  border-radius: 2%;
+  border: none;
+  padding: 1%;
+}
+
+.login-button {
+  background-color:#3cc18a;
+  border-radius: 5%;
+  color: white;
+  margin: 2%;
+  font-size: 12pt;
+  padding: 1% 10%;
+}
+
+#error {
+  color: red;
+}
+
+/**
+ *Task List page *
+ **/
+
+.logout-button {
+  float: right;
+  margin-right: 0.5%;
+  background-color: #ed4242;
+  color: white;
+  font-size: 12pt;
+  border-radius: 5%;
+  padding: 0.5% 1%;
+  display: block;
+}
+
+.new-task {
+  clear: right;
+  text-align: center;
+  margin: auto; /* Why doesn't this work??? */
+}
+.new-task button {
+  font-family: 'Roboto';
+  font-size: 12pt;
+  padding: 0.25% 0.25%;
+  background-color:#3cc18a;
+  border-radius: 5%;
+}
+.new-task input {
+  font-size: 12pt;
+  padding: 0.25%;
+  background-color: white;
+}
+
+.task-list {
+  margin: auto;
+  width: 20%;
+  text-align: center;
+  position: fixed;
+  top: 10%;
+  left: 37.5%;
+  font-family: 'Roboto';
+  background-color: white;
+  padding: 2.5%;
+  border-radius: 3%;
+  box-shadow: 1px 1px 1px 1px grey;
+}
+
+.task-list h2 {
+  font-family: 'Roboto';
+}
+
+.task-list table {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 12pt;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 1% 5%;
+}
+
+
+
+.task-list tbody {
+  background-color: #e6e9ef;
+
+}
+
+tr .deleted {
+
+}
+
+.delete-btn {
+
+}
+
+
+/**
+* Common styles
+**/
+
+body {
+  background-color: #e6e9ef;
+}
+

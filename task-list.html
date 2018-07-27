@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To-Do List</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'><!-- Google-->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/sort.js"></script>
+    <script type="text/javascript" src="js/task.js"></script>
+  </head>
+
+  <body>
+
+    <button class="logout-button" onclick="logout()">Logout</button>
+
+    <!-- New Task -->
+    <div class="row new-task">
+      <input id="new-task" type="text" name="new-task" placeholder="New Task">
+      <button id="save-button"onclick="newTask()">Save</button>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list">
+      <h2>Task List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"><button>ID - </button></th>
+            <th scope="col"><button>Name - </button></th>
+            <th scope="col"><button>Created Date - </button></th>
+            <th scope="col"><button>Status - </button></th>
+          </tr>
+          <tbody id="actual-list-of-tasks">
+
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  </body>
+</html>

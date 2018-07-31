@@ -94,12 +94,14 @@ input {
   font-family: 'Roboto';
 }
 
-.task-list table {
+.task-list table tbody {
   vertical-align: middle;
   text-align: center;
   font-size: 12pt;
   margin: auto;
   border-collapse: collapse;
+  /* border-top-style: solid;
+  border-bottom-style: solid; */
 }
 
 td {
@@ -114,7 +116,7 @@ td {
 }
 
 tr .deleted {
-
+  background-color: white;
 }
 
 .delete-btn {

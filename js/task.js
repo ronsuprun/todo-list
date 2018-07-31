@@ -1,5 +1,5 @@
 // List of tasks
-var taskList = [];
+taskList = [];
 
 // Task Class
 function Task(name) {
@@ -9,6 +9,7 @@ function Task(name) {
   this.name = name;
   this.createdDate = getDate();
   this.status = "Incomplete";
+  this.deleted = false;
 
   // Methods
   this.addToDOM = function () {
@@ -31,7 +32,6 @@ function Task(name) {
     deleteButton.onclick = function() {return deleteTask(idCell.innerHTML)};
     deleteButton.class = 'delete-btn';
     newTask.id = this.id;
-
 
     // append nodes to each other
     newTask.appendChild(idCell);
@@ -69,7 +69,27 @@ function createStatusSelect() {
 
 // Function for 'onclick' attribute of delete button
 function deleteTask(id) {
-  console.log('ID: ' + String(id));
+
+  // Set deleted field to true
+  taskList.forEach(function(task){
+    if (task.id == id) {
+      task.deleted = true;
+    }
+  });
+
+  // Move deleted tasks to the end of the list, apply different styles
+  var taskNode = document.getElementById(id);
+  document.getElementById('actual-list-of-tasks').removeChild(taskNode);
+  taskNode.style.backgroundColor = 'white';
+  taskNode.children[3].children[0].disabled = true;
+  taskNode.children[4].children[0].disabled = true;
+  document.getElementById('actual-list-of-tasks').appendChild(taskNode);
+
+  // Disable Status
+
+
+  // console.log(taskNode.children);
+
 }
 
 // Return date in this format: mm/dd/yyyy hh:MM

@@ -25,12 +25,18 @@ function Task(name) {
 
     // Set attributes
     idCell.innerHTML = this.id;
+    idCell.className = 'taskID'
     nameCell.innerHTML = this.name;
+    nameCell.className = 'taskName';
     createDateCell.innerHTML = this.createdDate;
-    statusCell.appendChild(createStatusSelect());
+    createDateCell.className = 'taskDt';
+    statusSelect = createStatusSelect(this.status);
+    statusCell.appendChild(statusSelect);
+    statusCell.className = 'taskStatus';
     deleteButton.innerHTML = 'x';
     deleteButton.onclick = function() {return deleteTask(idCell.innerHTML)};
-    deleteButton.class = 'delete-btn';
+    deleteButton.className = 'delete-btn';
+    deleteCell.className = 'taskX';
     newTask.id = this.id;
 
     // append nodes to each other
@@ -41,12 +47,20 @@ function Task(name) {
     newTask.appendChild(deleteCell);
     deleteCell.appendChild(deleteButton);
 
-    document.getElementById('actual-list-of-tasks').appendChild(newTask);
+    if (!this.deleted) {
+      document.getElementById('current-tasks').appendChild(newTask);
+    }
+    else {
+      statusSelect.disabled = true;
+      deleteButton.disabled = true;
+      newTask.className = 'deleted';
+      document.getElementById('deleted-tasks').appendChild(newTask);
+    }
   }
 }
 
 // Returns DOM node for status drop down
-function createStatusSelect() {
+function createStatusSelect(status) {
   // Create nodes
   var select = document.createElement("select");
   var complete = document.createElement("option");
@@ -56,9 +70,13 @@ function createStatusSelect() {
   select.name = "status";
   complete.value = "Complete";
   complete.innerHTML = "Complete";
+  incomplete.selected = status == 'Complete';
   incomplete.value = "Incomplete";
   incomplete.innerHTML = "Incomplete";
-  incomplete.selected = true;
+  incomplete.selected = status == 'Incomplete';
+  select.addEventListener('change', function (evt) {
+    return taskStatusChange(evt);
+  });
 
   // Append to parent
   select.appendChild(complete);
@@ -77,19 +95,18 @@ function deleteTask(id) {
     }
   });
 
-  // Move deleted tasks to the end of the list, apply different styles
+  // Remove task
   var taskNode = document.getElementById(id);
-  document.getElementById('actual-list-of-tasks').removeChild(taskNode);
-  taskNode.style.backgroundColor = 'white';
+  document.getElementById('current-tasks').removeChild(taskNode);
+
+  // Add deleted style and disable buttons
+  taskNode.className = 'deleted';
   taskNode.children[3].children[0].disabled = true;
   taskNode.children[4].children[0].disabled = true;
-  document.getElementById('actual-list-of-tasks').appendChild(taskNode);
 
-  // Disable Status
-
-
-  // console.log(taskNode.children);
-
+  // Add task to deleted section
+  document.getElementById('deleted-tasks').insertBefore(taskNode,
+    document.getElementById('deleted-tasks').firstChild);
 }
 
 // Return date in this format: mm/dd/yyyy hh:MM
@@ -123,4 +140,17 @@ function newTask() {
     t.value = "";
     newTask.addToDOM();
   }
+}
+
+// Change task status using select field
+function taskStatusChange(evt) {
+  var id = evt.target.parentElement.parentElement.id;
+  var taskNode = document.getElementById(id)
+  var taskObj = taskList.filter(function (task) { return task.id == id})[0];
+  taskObj.status = Array.from(taskNode.children[3].firstChild.children)
+    .filter(function(option) {
+      if (option.selected == true) {
+        return option.value;
+      }
+  });
 }

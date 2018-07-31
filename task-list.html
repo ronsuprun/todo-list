@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <title>To-Do List</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'><!-- Google-->
+    <!-- Styles -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link rel="stylesheet" href="css/styles.css">
 
+    <!-- Scripts -->
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/sort.js"></script>
     <script type="text/javascript" src="js/task.js"></script>
@@ -26,17 +28,22 @@
     <div class="task-list">
       <h2>Task List</h2>
       <table>
+        <!-- Column Headings & sort buttons -->
         <thead>
           <tr>
-            <th scope="col"><button onclick="sort(1)">ID - </button></th>
-            <th scope="col"><button onclick="sort(2)">Name - </button></th>
-            <th scope="col"><button onclick="sort(3)">Created Date - </button></th>
-            <th scope="col"><button onclick="sort(4)">Status - </button></th>
+            <th scope="col" class="taskID"><button id="id-sort" onclick="sort(1)">ID - </button></th>
+            <th scope="col" class="taskName"><button id="name-sort" onclick="sort(2)">Name - </button></th>
+            <th scope="col" class="taskDt"><button id="date-sort" onclick="sort(3)">Created Date - </button></th>
+            <th scope="col" class="taskStatus"><button id="status-sort" onclick="sort(4)">Status - </button></th>
+            <th scope="col" class="taskX"></th>
           </tr>
-          <tbody id="actual-list-of-tasks">
-
-          </tbody>
         </thead>
+
+        <!-- New tasks (not yet deleted) -->
+        <tbody id="current-tasks"></tbody>
+
+        <!-- Deleted tasks -->
+        <tfoot id="deleted-tasks"></tfoot>
       </table>
     </div>
   </body>

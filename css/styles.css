@@ -78,11 +78,11 @@ input {
 
 .task-list {
   margin: auto;
-  width: 20%;
+  width: 50%;
   text-align: center;
   position: fixed;
   top: 10%;
-  left: 37.5%;
+  left: 25%;
   font-family: 'Roboto';
   background-color: white;
   padding: 2.5%;
@@ -94,28 +94,58 @@ input {
   font-family: 'Roboto';
 }
 
-.task-list table tbody {
+.task-list table {
   vertical-align: middle;
   text-align: center;
   font-size: 12pt;
   margin: auto;
   border-collapse: collapse;
-  /* border-top-style: solid;
-  border-bottom-style: solid; */
+  width: 80%;
+  max-width: 80%;
+  table-layout: fixed;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-td {
-  padding: 1% 5%;
+.task-list table tbody tr,
+.task-list table tfoot tr{
+  border-top-style: solid;
+  border-top-width: thin;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
 }
 
+.taskID {
+  width: 5%;
+  text-align: center;
+}
 
+.taskName {
+  width: 30%;
+  text-align: left;
+}
+
+.taskDt {
+  width: 30%;
+  text-align: right;
+}
+
+.taskStatus {
+  width: 30%;
+  text-align: center;
+}
+
+.taskX {
+  width: 5%;
+  text-align: center;
+}
 
 .task-list tbody {
   background-color: #e6e9ef;
 
 }
 
-tr .deleted {
+.deleted {
   background-color: white;
 }
 

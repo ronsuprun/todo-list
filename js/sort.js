@@ -17,12 +17,6 @@ function sort(colNum) {
   var currentTasks = taskList.filter(function(task) {return !task.deleted});
   var deletedTasks = taskList.filter(function (task) { return task.deleted });
 
-  currentTasks.sort(sortFunc(colNum));
-  deletedTasks.sort(sortFunc(colNum));
-
-  // Update DOM task list
-  displayTaskList(currentTasks, deletedTasks);
-
   // Update button label & sort status
   var oldLabel = sortStatus[String(colNum)]['label']
   var newLabel = oldLabel.substring(0, oldLabel.length-3)
@@ -41,6 +35,22 @@ function sort(colNum) {
     sortStatus[String(colNum)]['label'] = newLabel + ' - ';
     document.getElementById(sortStatus[String(colNum)]['id']).innerHTML = newLabel + ' - ';
   }
+
+  // Update other button labels & status
+  [1, 2, 3, 4].filter(function (x) { return x != colNum }).forEach(function (i) {
+    var currentLabel = sortStatus[String(i)]['label'];
+    var updatedLabel = currentLabel.substring(0,currentLabel.length-3) + " - ";
+    sortStatus[String(i)]['label'] = updatedLabel;
+    sortStatus[String(i)]['status'] = 'none';
+    document.getElementById(sortStatus[String(i)]['id']).innerHTML = updatedLabel;
+  })
+
+  currentTasks.sort(sortFunc(colNum));
+  deletedTasks.sort(sortFunc(colNum));
+
+  // Update DOM task list
+  displayTaskList(currentTasks, deletedTasks);
+
 }
 
 function displayTaskList(currTasks, delTasks) {
@@ -71,11 +81,11 @@ function sortFunc (colNum) {
     }
     else if (colNum == 2) { // Name
       if (sortStatus[String(colNum)]['status'] == 'asc') { return a.name.toUpperCase() < b.name.toUpperCase() }
-      else if (sortStatus[String(colNum)]['status'] == 'desc') { return b.name.toUpperCase() > a.name.toUpperCase() }
+      else if (sortStatus[String(colNum)]['status'] == 'desc') { return a.name.toUpperCase() > b.name.toUpperCase() }
       else { return 0 }
     }
     else if (colNum == 3) { // Created Date
-      if (sortStatus[String(colNum)]['status'] == 'asc') { return a.createdDate < b.createdDate }
+      if (sortStatus[String(colNum)]['status'] == 'asc') { return b.createdDate < a.createdDate }
       else if (sortStatus[String(colNum)]['status'] == 'desc') { return b.createdDate > a.createdDate }
       else { return 0 }
 

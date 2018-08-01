@@ -153,4 +153,15 @@ function taskStatusChange(evt) {
         return option.value;
       }
   });
+
+  // TODO: FIX THIS?
+  // Enter button event listener
+  document.getElementById("new-task").addEventListener("keyup", function (evt) {
+    console.log("ENTER")
+    evt.preventDefault();
+    if (event.keyCode === 13) {
+      document.getElementById("save-button").click();
+    }
+  })
+
 }
